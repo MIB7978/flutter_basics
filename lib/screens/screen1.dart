@@ -45,9 +45,13 @@ class _NewScreen1State extends State<NewScreen1> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          setState(() {
-                            buttonName = "Click";
-                          });
+                          // setState(() {
+                          //   buttonName = "Click";
+                          // });
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) {
+                            return SecondPage();
+                          }));
                           print("Clicked");
                         },
                         child: Text(buttonName),
@@ -78,5 +82,14 @@ class _NewScreen1State extends State<NewScreen1> {
       ),
     );
     ;
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
   }
 }

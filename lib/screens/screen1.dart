@@ -11,6 +11,7 @@ class _NewScreen1State extends State<NewScreen1> {
   String buttonName = "Clicked";
 
   int currentindex = 0;
+  bool _isClicked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,17 @@ class _NewScreen1State extends State<NewScreen1> {
                     ],
                   ),
                 )
-              : Image.asset('images/second.jpg'),
+              : GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isClicked = !_isClicked;
+                    });
+                  },
+                  child: _isClicked
+                      ? Image.asset('images/second.jpg')
+                      : Image.network(
+                          "https://w0.peakpx.com/wallpaper/360/97/HD-wallpaper-sceneray-mehrangarh-forest-greenary-lake-lakes-mountains-nature-hop-sceneary-view.jpg"),
+                ),
         ),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
@@ -90,6 +101,10 @@ class SecondPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second"),
+      ),
+    );
   }
 }

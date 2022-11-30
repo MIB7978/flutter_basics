@@ -12,69 +12,43 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String buttonName = "Clicked";
-  int currentindex = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      home: FirstPage(),
+    );
+  }
+}
+
+class FirstPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
         appBar: AppBar(
-          title: const Text("Basics"),
+          title: Text("Title"),
         ),
         body: Center(
-          child: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    onPrimary: Colors.red,
-                    primary: Colors.orange,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      buttonName = "Click";
-                    });
-                    print("Clicked");
-                  },
-                  child: Text(buttonName),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      buttonName = "Click";
-                    });
-                    print("Clicked");
-                  },
-                  child: Text(buttonName),
-                ),
-              ],
-            ),
+          child: ElevatedButton(
+            child: Text("Press"),
+            onPressed: () => {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (BuildContext context) {
+                return SecondPage();
+              }))
+            },
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              label: "Home",
-              icon: Icon(Icons.home),
-            ),
-            BottomNavigationBarItem(
-              label: "Settings",
-              icon: Icon(Icons.settings),
-            ),
-          ],
-          currentIndex: currentindex,
-          onTap: (int index) {
-            setState(() {
-              currentindex = index;
-            });
-          },
-        ),
-      ),
+        ));
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
     );
   }
 }
